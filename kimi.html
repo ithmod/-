@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرك بحث الحدود الدنيا للقبول المركزي 2025-2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #f59e0b;
+            --bg: #f8fafc;
+            --bg-elevated: #ffffff;
+            --bg-card: #ffffff;
+            --bg-input: #f1f5f9;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --text-dim: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            direction: rtl;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .creator-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: white;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.25);
+        }
+        .creator-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .creator-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+        .creator-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+        .insta-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-radius: var(--radius-sm);
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(220, 39, 67, 0.2);
+        }
+        .insta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(220, 39, 67, 0.35);
+        }
+
+        /* ===== HERO HEADER ===== */
+        .hero-header {
+            position: relative;
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+        }
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.15; }
+            50% { transform: translateY(-30px) scale(1.3); opacity: 0.35; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .badge-year {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        .title-line {
+            display: block;
+            animation: fadeInUp 0.7s ease-out backwards;
+        }
+        .title-line.accent {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation-delay: 0.15s;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            animation: fadeInUp 0.9s ease-out 0.5s backwards;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        /* ===== SEARCH PANEL ===== */
+        .search-panel {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            animation: slideUp 0.6s ease-out 0.2s backwards;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .search-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .search-grid { grid-template-columns: 2fr 1fr 1fr; }
+        }
+        .input-block label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .input-block label svg {
+            color: var(--primary);
+        }
+        .input-wrap {
+            position: relative;
+        }
+        .input-wrap input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            padding-left: 3rem;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
+        .input-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1), 0 0 20px rgba(99, 102, 241, 0.08);
+            background: #fff;
+        }
+        .input-wrap input::placeholder { color: var(--text-dim); }
+        .input-suffix {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        .score-slider {
+            margin-top: 0.75rem;
+        }
+        .score-slider input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+        }
+        .score-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
+            transition: transform 0.2s;
+            border: 3px solid white;
+        }
+        .score-slider input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.25);
+        }
+
+        /* Custom Select */
+        .custom-select {
+            position: relative;
+        }
+        .select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .select-trigger:hover, .custom-select.open .select-trigger {
+            border-color: var(--primary);
+            background: #fff;
+        }
+        .select-trigger svg {
+            transition: transform 0.3s ease;
+            color: var(--text-dim);
+        }
+        .custom-select.open .select-trigger svg {
+            transform: rotate(180deg);
+        }
+        .select-options {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-lg);
+        }
+        .custom-select.open .select-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .select-options .option {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-muted);
+        }
+        .select-options .option:last-child { border-bottom: none; }
+        .select-options .option:hover {
+            background: rgba(99, 102, 241, 0.06);
+            color: var(--primary);
+        }
+        .select-options .option.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Toggle Row */
+        .toggle-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .modern-toggle {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .modern-toggle input { display: none; }
+        .toggle-track {
+            display: block;
+            width: 52px;
+            height: 28px;
+            background: var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .modern-toggle input:checked + .toggle-track {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+        }
+        .modern-toggle input:checked + .toggle-track .toggle-thumb {
+            transform: translateX(-24px);
+        }
+        .toggle-text {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .toggle-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .toggle-desc {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== RESULTS TOOLBAR ===== */
+        .results-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .results-count {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: white;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+        }
+        .count-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .sort-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sort-control span {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .sort-btn {
+            padding: 0.4rem 0.875rem;
+            background: transparent;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .sort-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .sort-btn.active {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== LOADING STATE ===== */
+        .loading-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .loader-ring {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+        .loader-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 51px;
+            height: 51px;
+            margin: 6px;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: loader-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: var(--primary) transparent transparent transparent;
+        }
+        .loader-ring div:nth-child(1) { animation-delay: -0.45s; }
+        .loader-ring div:nth-child(2) { animation-delay: -0.3s; }
+        .loader-ring div:nth-child(3) { animation-delay: -0.15s; }
+        @keyframes loader-ring {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-state p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== ERROR STATE ===== */
+        .error-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+        .error-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .error-state h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .error-state p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .retry-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.2);
+        }
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+            padding-bottom: 2rem;
+        }
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.5s ease-out backwards;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-light), var(--primary-dark));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(99, 102, 241, 0.2);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.06);
+        }
+        .result-card:hover::before { opacity: 1; }
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .card-branch {
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .card-branch.علمي { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
+        .card-branch.أدبي { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .card-branch.فنون { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
+        .card-rank {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+        .card-body {
+            margin-bottom: 1.25rem;
+        }
+        .card-uni {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .card-uni::before {
+            content: '🏛️';
+            font-size: 0.9rem;
+        }
+        .card-college {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+        .score-display {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .score-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+        .score-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        .score-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        .result-card:hover .card-arrow {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            grid-column: 1 / -1;
+        }
+        .empty-illustration { font-size: 4rem; margin-bottom: 1rem; }
+        .empty-state h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .empty-state p { color: var(--text-muted); }
+
+        /* ===== FOOTER ===== */
+        .app-footer {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .footer-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: white;
+        }
+        .footer-name {
+            display: block;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+        }
+        .footer-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .footer-insta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-radius: var(--radius-md);
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(220, 39, 67, 0.2);
+        }
+        .footer-insta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(220, 39, 67, 0.35);
+        }
+        .footer-copy {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-stats { gap: 1.5rem; }
+            .stat-num { font-size: 1.4rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .results-toolbar { flex-direction: column; align-items: flex-start; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="creator-info">
+                <div class="avatar">AD</div>
+                <div class="creator-text">
+                    <span class="creator-label">تم التطوير بواسطة</span>
+                    <span class="creator-name">Ahmed Diaa</span>
+                </div>
+            </div>
+            <a href="https://instagram.com/h_8w" target="_blank" class="insta-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <span>@h_8w</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="badge-year">🎓 2025 - 2026</div>
+            <h1 class="hero-title">
+                <span class="title-line">محرك بحث الحدود الدنيا</span>
+                <span class="title-line accent">للقبول المركزي</span>
+            </h1>
+            <p class="hero-subtitle">اكتشف الكليات والأقسام المتاحة لمعدلك بضغطة زر</p>
+            <div class="hero-stats" id="heroStats">
+                <div class="stat-item">
+                    <span class="stat-num" id="statColleges">0</span>
+                    <span class="stat-label">كلية</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num" id="statUnis">0</span>
+                    <span class="stat-label">جامعة</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num" id="statBranches">0</span>
+                    <span class="stat-label">فرع</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <div class="container">
+        <div class="search-panel">
+            <div class="search-grid">
+                <div class="input-block">
+                    <label for="scoreInput">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                        المعدل
+                    </label>
+                    <div class="input-wrap">
+                        <input type="number" id="scoreInput" placeholder="مثال: 90.50" min="50" max="105" step="0.01">
+                        <span class="input-suffix">%</span>
+                    </div>
+                    <div class="score-slider">
+                        <input type="range" id="scoreSlider" min="50" max="105" step="0.01" value="75">
+                    </div>
+                </div>
+
+                <div class="input-block">
+                    <label for="branchFilter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"></path></svg>
+                        الفرع الدراسي
+                    </label>
+                    <div class="custom-select" id="branchSelect">
+                        <div class="select-trigger" data-value="all">
+                            <span>الكل</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="select-options">
+                            <div class="option active" data-value="all">الكل</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-block">
+                    <label for="uniFilter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-9a2 2 0 0 1 4 0v9"></path></svg>
+                        الجامعة / المحافظة
+                    </label>
+                    <div class="custom-select" id="uniSelect">
+                        <div class="select-trigger" data-value="all">
+                            <span>الكل</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="select-options">
+                            <div class="option active" data-value="all">الكل</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-row">
+                <div class="modern-toggle">
+                    <input type="checkbox" id="showBelowToggle" checked>
+                    <label for="showBelowToggle" class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </label>
+                </div>
+                <label for="showBelowToggle" class="toggle-text">
+                    <span class="toggle-title">إظهار جميع الأقسام التي تقبل معدلي فما دون</span>
+                    <span class="toggle-desc">عرض الكليات التي يكون فيها الحد الأدنى أقل من أو يساوي معدلك</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Results Toolbar -->
+        <div class="results-toolbar" id="resultsToolbar" style="display:none;">
+            <div class="results-count">
+                <span class="count-badge" id="countBadge">0</span>
+                <span class="count-text">نتيجة مطابقة</span>
+            </div>
+            <div class="sort-control">
+                <span>الترتيب:</span>
+                <button class="sort-btn active" data-sort="desc">الأعلى أولاً ↓</button>
+                <button class="sort-btn" data-sort="asc">الأدنى أولاً ↑</button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loader">
+            <div class="loader-ring">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <p>جاري تحميل البيانات...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-state" id="errorState" style="display:none;">
+            <div class="error-icon">⚠️</div>
+            <h3>تعذر تحميل البيانات</h3>
+            <p>يرجى التأكد من وجود ملف data.json في نفس المجلد</p>
+            <button class="retry-btn" onclick="init()">إعادة المحاولة</button>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="cards-grid" id="resultsGrid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <div class="empty-illustration">🔍</div>
+            <h3>لا توجد نتائج مطابقة</h3>
+            <p>جرب تعديل المعدل أو إزالة بعض الفلاتر للحصول على نتائج أكثر</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-avatar">AD</div>
+                <div>
+                    <span class="footer-name">Ahmed Diaa</span>
+                </div>
+            </div>
+            <a href="https://instagram.com/h_8w" target="_blank" class="footer-insta">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <span>تابعني على إنستغرام</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        let allData = [];
+        let currentSort = 'desc';
+
+        const scoreInput = document.getElementById('scoreInput');
+        const scoreSlider = document.getElementById('scoreSlider');
+        const showBelowToggle = document.getElementById('showBelowToggle');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const resultsToolbar = document.getElementById('resultsToolbar');
+        const countBadge = document.getElementById('countBadge');
+        const loader = document.getElementById('loader');
+        const errorState = document.getElementById('errorState');
+        const emptyState = document.getElementById('emptyState');
+        const branchSelect = document.getElementById('branchSelect');
+        const uniSelect = document.getElementById('uniSelect');
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 6 + 's';
+                p.style.animationDuration = (4 + Math.random() * 4) + 's';
+                container.appendChild(p);
+            }
+        }
+
+        function setupCustomSelect(el, onChange) {
+            const trigger = el.querySelector('.select-trigger');
+            const options = el.querySelector('.select-options');
+            
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.custom-select').forEach(s => {
+                    if (s !== el) s.classList.remove('open');
+                });
+                el.classList.toggle('open');
+            });
+
+            options.addEventListener('click', (e) => {
+                if (e.target.classList.contains('option')) {
+                    const val = e.target.dataset.value;
+                    const text = e.target.textContent;
+                    trigger.querySelector('span').textContent = text;
+                    trigger.dataset.value = val;
+                    options.querySelectorAll('.option').forEach(o => o.classList.remove('active'));
+                    e.target.classList.add('active');
+                    el.classList.remove('open');
+                    onChange && onChange(val);
+                }
+            });
+        }
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.custom-select').forEach(s => s.classList.remove('open'));
+        });
+
+        scoreInput.addEventListener('input', () => {
+            scoreSlider.value = scoreInput.value || 75;
+            filterData();
+        });
+        scoreSlider.addEventListener('input', () => {
+            scoreInput.value = scoreSlider.value;
+            filterData();
+        });
+
+        document.querySelectorAll('.sort-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSort = btn.dataset.sort;
+                filterData();
+            });
+        });
+
+        function reverseString(str) {
+            if (!str) return '';
+            return str.split('').reverse().join('');
+        }
+
+        function animateValue(el, start, end, duration) {
+            const range = end - start;
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(start + range * ease);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        async function init() {
+            loader.style.display = 'block';
+            errorState.style.display = 'none';
+            resultsToolbar.style.display = 'none';
+            resultsGrid.innerHTML = '';
+            emptyState.style.display = 'none';
+
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('File not found');
+                const rawData = await response.json();
+
+                allData = rawData.map(item => {
+                    const rawCollege = item.university || '';
+                    const rawUni = item.college || '';
+                    const rawBranch = item.major || '';
+
+                    const reversedCollege = reverseString(rawCollege);
+                    const reversedUni = reverseString(rawUni);
+                    let reversedBranch = reverseString(rawBranch);
+
+                    if (reversedBranch === 'ادبي') reversedBranch = 'أدبي';
+                    if (!['علمي', 'أدبي', 'فنون'].includes(reversedBranch)) {
+                        reversedBranch = 'علمي';
+                    }
+
+                    return {
+                        university: reversedUni,
+                        college: reversedCollege,
+                        branch: reversedBranch,
+                        average: parseFloat(item.grade) || 0
+                    };
+                }).filter(item => item.average <= 105);
+
+                loader.style.display = 'none';
+                resultsToolbar.style.display = 'flex';
+
+                const branches = [...new Set(allData.map(i => i.branch))].filter(Boolean).sort();
+                const universities = [...new Set(allData.map(i => i.university))].filter(Boolean).sort();
+
+                const branchOpts = branchSelect.querySelector('.select-options');
+                const uniOpts = uniSelect.querySelector('.select-options');
+
+                branches.forEach(b => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.dataset.value = b;
+                    div.textContent = b;
+                    branchOpts.appendChild(div);
+                });
+
+                universities.forEach(u => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.dataset.value = u;
+                    div.textContent = u;
+                    uniOpts.appendChild(div);
+                });
+
+                setupCustomSelect(branchSelect, () => filterData());
+                setupCustomSelect(uniSelect, () => filterData());
+
+                showBelowToggle.addEventListener('change', filterData);
+
+                const collegesCount = [...new Set(allData.map(i => i.college))].length;
+                const unisCount = universities.length;
+                const branchesCount = branches.length;
+
+                animateValue(document.getElementById('statColleges'), 0, collegesCount, 1500);
+                animateValue(document.getElementById('statUnis'), 0, unisCount, 1500);
+                animateValue(document.getElementById('statBranches'), 0, branchesCount, 1500);
+
+                filterData();
+
+            } catch (error) {
+                console.error(error);
+                loader.style.display = 'none';
+                errorState.style.display = 'block';
+            }
+        }
+
+        function filterData() {
+            const scoreVal = scoreInput.value.trim();
+            const branchVal = branchSelect.querySelector('.select-trigger').dataset.value;
+            const uniVal = uniSelect.querySelector('.select-trigger').dataset.value;
+            const showBelow = showBelowToggle.checked;
+
+            let filtered = allData;
+
+            if (scoreVal !== '') {
+                const targetScore = parseFloat(scoreVal);
+                if (!isNaN(targetScore)) {
+                    if (showBelow) {
+                        filtered = filtered.filter(item => item.average <= targetScore);
+                    } else {
+                        filtered = filtered.filter(item => Math.abs(item.average - targetScore) < 0.5);
+                    }
+                }
+            }
+
+            if (branchVal !== 'all') {
+                filtered = filtered.filter(item => item.branch === branchVal);
+            }
+
+            if (uniVal !== 'all') {
+                filtered = filtered.filter(item => item.university === uniVal);
+            }
+
+            filtered.sort((a, b) => currentSort === 'desc' ? b.average - a.average : a.average - b.average);
+
+            renderCards(filtered);
+        }
+
+        function renderCards(data) {
+            resultsGrid.innerHTML = '';
+            countBadge.textContent = data.length;
+
+            if (data.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            emptyState.style.display = 'none';
+
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                card.style.animationDelay = `${Math.min(index * 0.04, 0.5)}s`;
+
+                const percentage = Math.min((item.average / 105) * 100, 100);
+
+                card.innerHTML = `
+                    <div class="card-top">
+                        <span class="card-branch ${item.branch}">${item.branch}</span>
+                        <span class="card-rank">#${index + 1}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-uni">${item.university}</div>
+                        <h3 class="card-college">${item.college}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="score-display">
+                            <span class="score-label">الحد الأدنى</span>
+                            <span class="score-value">${item.average.toFixed(2)}</span>
+                            <div class="score-bar">
+                                <div class="score-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="card-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+                    </div>
+                `;
+
+                resultsGrid.appendChild(card);
+
+                setTimeout(() => {
+                    const fill = card.querySelector('.score-bar-fill');
+                    if (fill) fill.style.width = percentage + '%';
+                }, 100 + index * 50);
+            });
+        }
+
+        createParticles();
+        init();
+    </script>
+</body>
+</html>
