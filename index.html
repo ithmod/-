@@ -249,14 +249,19 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         .search-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-        @media (min-width: 768px) {
-            .search-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+        @media (min-width: 640px) {
+            .search-grid { grid-template-columns: 1fr 1fr; }
         }
+        @media (min-width: 1024px) {
+            .search-grid { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
+        }
+
         .input-block label {
             display: flex;
             align-items: center;
@@ -604,6 +609,11 @@
             align-items: flex-start;
             margin-bottom: 1rem;
         }
+        .card-badges-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
         .card-branch {
             padding: 0.3rem 0.75rem;
             border-radius: 999px;
@@ -613,6 +623,20 @@
         .card-branch.علمي { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
         .card-branch.أدبي { background: rgba(245, 158, 11, 0.1); color: #d97706; }
         .card-branch.فنون { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
+        
+        /* تنسيقات شارة الجنس */
+        .card-gender {
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--text-muted);
+        }
+        .card-gender.مختلط { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+        .card-gender.ذكر { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+        .card-gender.انثى { background: rgba(236, 72, 153, 0.1); color: #db2777; }
+
         .card-rank {
             font-size: 0.75rem;
             color: var(--text-dim);
@@ -832,6 +856,7 @@
         <div class="search-panel">
             <div class="search-grid">
                 
+                <!-- إدخال المعدل -->
                 <div class="input-block">
                     <label for="scoreInput">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
@@ -843,12 +868,13 @@
                     </div>
                 </div>
 
+                <!-- فلتر المحافظة الجديد -->
                 <div class="input-block">
-                    <label for="branchFilter">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"></path></svg>
-                        الفرع الدراسي
+                    <label for="govFilter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        المحافظة
                     </label>
-                    <div class="custom-select" id="branchSelect">
+                    <div class="custom-select" id="govSelect">
                         <div class="select-trigger" data-value="all">
                             <span>الكل</span>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -859,12 +885,30 @@
                     </div>
                 </div>
 
+                <!-- فلتر الجامعة -->
                 <div class="input-block">
                     <label for="uniFilter">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-9a2 2 0 0 1 4 0v9"></path></svg>
-                        الجامعة / المحافظة
+                        الجامعة
                     </label>
                     <div class="custom-select" id="uniSelect">
+                        <div class="select-trigger" data-value="all">
+                            <span>الكل</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="select-options">
+                            <div class="option active" data-value="all">الكل</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- فلتر الفرع الدراسي -->
+                <div class="input-block">
+                    <label for="branchFilter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"></path></svg>
+                        الفرع الدراسي
+                    </label>
+                    <div class="custom-select" id="branchSelect">
                         <div class="select-trigger" data-value="all">
                             <span>الكل</span>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -965,6 +1009,58 @@
         const emptyState = document.getElementById('emptyState');
         const branchSelect = document.getElementById('branchSelect');
         const uniSelect = document.getElementById('uniSelect');
+        const govSelect = document.getElementById('govSelect');
+
+        // قائمة المحافظات المربوطة بالجامعات
+        const uniToGov = [
+            { key: "البصرة للنفط", gov: "البصرة" },
+            { key: "البصرة", gov: "البصرة" },
+            { key: "ابن سينا", gov: "بغداد" },
+            { key: "تكنولوجيا المعلومات", gov: "بغداد" },
+            { key: "الكرخ", gov: "بغداد" },
+            { key: "التقنية الوسطى", gov: "بغداد" },
+            { key: "النهرين", gov: "بغداد" },
+            { key: "المستنصرية", gov: "بغداد" },
+            { key: "العراقية", gov: "بغداد" },
+            { key: "التكنولوجية", gov: "بغداد" },
+            { key: "بغداد", gov: "بغداد" },
+            { key: "التقنية الجنوبية", gov: "البصرة" },
+            { key: "الحمدانية", gov: "نينوى" },
+            { key: "تلعفر", gov: "نينوى" },
+            { key: "التقنية الشمالية", gov: "نينوى" },
+            { key: "نينوى", gov: "نينوى" },
+            { key: "الموصل", gov: "نينوى" },
+            { key: "القاسم الخضراء", gov: "بابل" },
+            { key: "بابل", gov: "بابل" },
+            { key: "جابر بن حيان", gov: "النجف" },
+            { key: "الفرات الأوسط", gov: "النجف" },
+            { key: "الفرات الاوسط", gov: "النجف" },
+            { key: "الكوفة", gov: "النجف" },
+            { key: "كربلاء", gov: "كربلاء" },
+            { key: "واسط", gov: "واسط" },
+            { key: "ديالى", gov: "ديالى" },
+            { key: "كركوك", gov: "كركوك" },
+            { key: "الفلوجة", gov: "الأنبار" },
+            { key: "الأنبار", gov: "الأنبار" },
+            { key: "الانبار", gov: "الأنبار" },
+            { key: "سامراء", gov: "صلاح الدين" },
+            { key: "تكريت", gov: "صلاح الدين" },
+            { key: "القادسية", gov: "الديوانية" },
+            { key: "المثنى", gov: "المثنى" },
+            { key: "سومر", gov: "ذي قار" },
+            { key: "الشطرة", gov: "ذي قار" },
+            { key: "ذي قار", gov: "ذي قار" },
+            { key: "ميسان", gov: "ميسان" }
+        ];
+
+        function getGovForUni(uniName) {
+            for (let item of uniToGov) {
+                if (uniName.includes(item.key)) {
+                    return item.gov;
+                }
+            }
+            return "أخرى";
+        }
 
         function createParticles() {
             const container = document.getElementById('particles');
@@ -1062,14 +1158,20 @@
                     const uni = item['الجامعة'] || item.university || item['الكلية او الجامعة'] || '';
                     const coll = item['القسم'] || item.college || '';
                     let branch = item['الفرع'] || item['مهني او علمي او ادبي'] || item.major || '';
+                    let gender = item['الجنس'] || item.gender || 'مختلط';
 
+                    // تصحيح التسميات
                     if (branch.includes('ادبي')) branch = 'أدبي';
-                    // تم إرجاع الفنون كـ "فنون" بناءً على طلبك
+                    if (gender.includes('انثى') || gender.includes('أنثى')) gender = 'انثى';
+
+                    const gov = getGovForUni(uni);
 
                     return {
                         university: uni,
                         college: coll,
                         branch: branch,
+                        gender: gender,
+                        gov: gov,
                         average: parseFloat(item['المعدل'] || item.grade) || 0
                     };
                 });
@@ -1079,9 +1181,11 @@
 
                 const branches = [...new Set(allData.map(i => i.branch))].filter(Boolean).sort();
                 const universities = [...new Set(allData.map(i => i.university))].filter(Boolean).sort();
+                const governorates = [...new Set(allData.map(i => i.gov))].filter(g => g !== 'أخرى').sort();
 
                 const branchOpts = branchSelect.querySelector('.select-options');
                 const uniOpts = uniSelect.querySelector('.select-options');
+                const govOpts = govSelect.querySelector('.select-options');
 
                 branches.forEach(b => {
                     const div = document.createElement('div');
@@ -1099,8 +1203,17 @@
                     uniOpts.appendChild(div);
                 });
 
+                governorates.forEach(g => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.dataset.value = g;
+                    div.textContent = g;
+                    govOpts.appendChild(div);
+                });
+
                 setupCustomSelect(branchSelect, () => filterData());
                 setupCustomSelect(uniSelect, () => filterData());
+                setupCustomSelect(govSelect, () => filterData());
 
                 const collegesCount = [...new Set(allData.map(i => i.college))].filter(Boolean).length;
                 const unisCount = universities.length;
@@ -1123,6 +1236,7 @@
             const scoreVal = scoreInput.value.trim();
             const branchVal = branchSelect.querySelector('.select-trigger').dataset.value;
             const uniVal = uniSelect.querySelector('.select-trigger').dataset.value;
+            const govVal = govSelect.querySelector('.select-trigger').dataset.value;
             const showBelow = showBelowToggle.checked;
 
             let filtered = allData;
@@ -1144,6 +1258,10 @@
 
             if (uniVal !== 'all') {
                 filtered = filtered.filter(item => item.university === uniVal);
+            }
+
+            if (govVal !== 'all') {
+                filtered = filtered.filter(item => item.gov === govVal);
             }
 
             filtered.sort((a, b) => currentSort === 'desc' ? b.average - a.average : a.average - b.average);
@@ -1170,7 +1288,10 @@
 
                 card.innerHTML = `
                     <div class="card-top">
-                        <span class="card-branch ${item.branch}">${item.branch}</span>
+                        <div class="card-badges-wrapper">
+                            <span class="card-branch ${item.branch}">${item.branch}</span>
+                            <span class="card-gender ${item.gender}">${item.gender}</span>
+                        </div>
                         <span class="card-rank">#${index + 1}</span>
                     </div>
                     <div class="card-body">
