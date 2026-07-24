@@ -1011,54 +1011,64 @@
         const uniSelect = document.getElementById('uniSelect');
         const govSelect = document.getElementById('govSelect');
 
-        // قائمة المحافظات المربوطة بالجامعات
-        const uniToGov = [
-            { key: "البصرة للنفط", gov: "البصرة" },
-            { key: "البصرة", gov: "البصرة" },
-            { key: "ابن سينا", gov: "بغداد" },
-            { key: "تكنولوجيا المعلومات", gov: "بغداد" },
-            { key: "الكرخ", gov: "بغداد" },
-            { key: "التقنية الوسطى", gov: "بغداد" },
-            { key: "النهرين", gov: "بغداد" },
-            { key: "المستنصرية", gov: "بغداد" },
-            { key: "العراقية", gov: "بغداد" },
-            { key: "التكنولوجية", gov: "بغداد" },
-            { key: "بغداد", gov: "بغداد" },
-            { key: "التقنية الجنوبية", gov: "البصرة" },
-            { key: "الحمدانية", gov: "نينوى" },
-            { key: "تلعفر", gov: "نينوى" },
-            { key: "التقنية الشمالية", gov: "نينوى" },
-            { key: "نينوى", gov: "نينوى" },
-            { key: "الموصل", gov: "نينوى" },
-            { key: "القاسم الخضراء", gov: "بابل" },
-            { key: "بابل", gov: "بابل" },
-            { key: "جابر بن حيان", gov: "النجف" },
-            { key: "الفرات الأوسط", gov: "النجف" },
-            { key: "الفرات الاوسط", gov: "النجف" },
-            { key: "الكوفة", gov: "النجف" },
-            { key: "كربلاء", gov: "كربلاء" },
-            { key: "واسط", gov: "واسط" },
-            { key: "ديالى", gov: "ديالى" },
-            { key: "كركوك", gov: "كركوك" },
-            { key: "الفلوجة", gov: "الأنبار" },
-            { key: "الأنبار", gov: "الأنبار" },
-            { key: "الانبار", gov: "الأنبار" },
-            { key: "سامراء", gov: "صلاح الدين" },
-            { key: "تكريت", gov: "صلاح الدين" },
-            { key: "القادسية", gov: "الديوانية" },
-            { key: "المثنى", gov: "المثنى" },
-            { key: "سومر", gov: "ذي قار" },
-            { key: "الشطرة", gov: "ذي قار" },
-            { key: "ذي قار", gov: "ذي قار" },
-            { key: "ميسان", gov: "ميسان" }
-        ];
+        // خوارزمية ذكية لمعرفة المحافظة الصحيحة حتى لو كانت الجامعة بفروع متعددة
+        function getGovForUni(uniName, collegeName) {
+            // ندمج اسم الجامعة مع الكلية للبحث عن الكلمات الدالة في كليهما
+            const fullText = (uniName + " " + collegeName).trim();
 
-        function getGovForUni(uniName) {
-            for (let item of uniToGov) {
-                if (uniName.includes(item.key)) {
-                    return item.gov;
+            // 1. الجامعات التقنية والفرات الأوسط (متعددة المحافظات)
+            if (fullText.includes("التقنية الجنوبية")) {
+                if (fullText.includes("ميسان") || fullText.includes("العمارة")) return "ميسان";
+                if (fullText.includes("ذي قار") || fullText.includes("الناصرية") || fullText.includes("الشطرة")) return "ذي قار";
+                return "البصرة"; // المقر الرئيسي
+            }
+            if (fullText.includes("التقنية الوسطى")) {
+                if (fullText.includes("واسط") || fullText.includes("الكوت") || fullText.includes("الصويرة")) return "واسط";
+                if (fullText.includes("ديالى") || fullText.includes("بعقوبة") || fullText.includes("المقدادية")) return "ديالى";
+                if (fullText.includes("الانبار") || fullText.includes("الأنبار")) return "الأنبار";
+                if (fullText.includes("صلاح الدين") || fullText.includes("الدور") || fullText.includes("بلد")) return "صلاح الدين";
+                return "بغداد"; // المقر الرئيسي
+            }
+            if (fullText.includes("التقنية الشمالية")) {
+                if (fullText.includes("كركوك") || fullText.includes("الحويجة")) return "كركوك";
+                if (fullText.includes("صلاح الدين") || fullText.includes("الدور") || fullText.includes("الشرقاط")) return "صلاح الدين";
+                return "نينوى"; // المقر الرئيسي (الموصل، نينوى، النمرود)
+            }
+            if (fullText.includes("الفرات الأوسط") || fullText.includes("الفرات الاوسط")) {
+                if (fullText.includes("بابل") || fullText.includes("المسيب")) return "بابل";
+                if (fullText.includes("كربلاء")) return "كربلاء";
+                if (fullText.includes("القادسية") || fullText.includes("الديوانية")) return "الديوانية";
+                if (fullText.includes("المثنى") || fullText.includes("السماوة") || fullText.includes("الرميثة")) return "المثنى";
+                return "النجف"; // المقر الرئيسي
+            }
+
+            // 2. باقي الجامعات الثابتة في محافظة واحدة
+            const govMapping = [
+                { keys: ["تلعفر", "الحمدانية", "نينوى", "الموصل"], gov: "نينوى" },
+                { keys: ["البصرة للنفط", "البصرة"], gov: "البصرة" }, // يجب فحص البصرة للنفط قبل البصرة
+                { keys: ["القاسم الخضراء", "بابل"], gov: "بابل" },
+                { keys: ["جابر بن حيان", "الكوفة"], gov: "النجف" },
+                { keys: ["كربلاء"], gov: "كربلاء" },
+                { keys: ["واسط"], gov: "واسط" },
+                { keys: ["ديالى"], gov: "ديالى" },
+                { keys: ["كركوك"], gov: "كركوك" },
+                { keys: ["الفلوجة", "الانبار", "الأنبار"], gov: "الأنبار" },
+                { keys: ["تكريت", "سامراء"], gov: "صلاح الدين" },
+                { keys: ["القادسية"], gov: "الديوانية" },
+                { keys: ["المثنى"], gov: "المثنى" },
+                { keys: ["سومر", "الشطرة", "ذي قار"], gov: "ذي قار" },
+                { keys: ["ميسان"], gov: "ميسان" },
+                { keys: ["النهرين", "المستنصرية", "العراقية", "التكنولوجية", "ابن سينا", "الكرخ", "تكنولوجيا المعلومات", "بغداد"], gov: "بغداد" }
+            ];
+
+            for (let item of govMapping) {
+                for (let key of item.keys) {
+                    if (fullText.includes(key)) {
+                        return item.gov;
+                    }
                 }
             }
+            
             return "أخرى";
         }
 
@@ -1164,7 +1174,8 @@
                     if (branch.includes('ادبي')) branch = 'أدبي';
                     if (gender.includes('انثى') || gender.includes('أنثى')) gender = 'انثى';
 
-                    const gov = getGovForUni(uni);
+                    // نمرر اسم الجامعة والكلية لضمان دقة المحافظة
+                    const gov = getGovForUni(uni, coll);
 
                     return {
                         university: uni,
