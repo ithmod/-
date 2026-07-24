@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محرك بحث الحدود الدنيا للقبول المركزي 2025-2026</title>
-    <!-- إعدادات معاينة الرابط عند الإرسال (Open Graph) -->
+    
+    <!-- إعدادات معاينة الرابط عند الإرسال (Open Graph) لإصلاح مشكلة ظهور صورتك الشخصية -->
     <meta property="og:title" content="محرك بحث الحدود الدنيا للقبول المركزي 2025-2026">
     <meta property="og:description" content="اكتشف الكليات والأقسام المتاحة عبر الفلترة الذكية بكل سهولة وبضغطة زر.">
-    
-    <!-- هنا تخلي اسم الصورة الي تريدها تظهر كغلاف للرابط -->
+    <!-- استبدل banner.jpg باسم صورة الغلاف التي صممتها (أو empty.jpg إذا كنت لا تريد أي صورة) -->
     <meta property="og:image" content="banner.jpg"> 
-    
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+
+    <title>محرك بحث الحدود الدنيا للقبول المركزي 2025-2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -613,7 +613,6 @@
         .card-branch.علمي { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
         .card-branch.أدبي { background: rgba(245, 158, 11, 0.1); color: #d97706; }
         .card-branch.فنون { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
-        .card-branch.مهني { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
         .card-rank {
             font-size: 0.75rem;
             color: var(--text-dim);
@@ -1065,8 +1064,7 @@
                     let branch = item['الفرع'] || item['مهني او علمي او ادبي'] || item.major || '';
 
                     if (branch.includes('ادبي')) branch = 'أدبي';
-                    if (branch.includes('فنون')) branch = 'مهني'; // تحويل الفنون الى مهني
-                    if (branch.includes('مهني')) branch = 'مهني';
+                    // تم إرجاع الفنون كـ "فنون" بناءً على طلبك
 
                     return {
                         university: uni,
