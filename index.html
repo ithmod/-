@@ -71,13 +71,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: white;
+            object-fit: cover;
             box-shadow: 0 2px 10px rgba(79, 70, 229, 0.25);
         }
         .creator-text {
@@ -250,10 +244,9 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
         }
         @media (min-width: 768px) {
-            .search-grid { grid-template-columns: 2fr 1fr 1fr; }
+            .search-grid { grid-template-columns: 1.5fr 1fr 1fr; }
         }
         .input-block label {
             display: flex;
@@ -289,7 +282,7 @@
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1), 0 0 20px rgba(99, 102, 241, 0.08);
             background: #fff;
         }
-        .input-wrap input::placeholder { color: var(--text-dim); }
+        .input-wrap input::placeholder { color: var(--text-dim); font-weight: 500; font-size: 0.9rem;}
         .input-suffix {
             position: absolute;
             left: 1rem;
@@ -299,31 +292,6 @@
             font-weight: 700;
             font-size: 0.9rem;
             pointer-events: none;
-        }
-        .score-slider {
-            margin-top: 0.75rem;
-        }
-        .score-slider input[type="range"] {
-            width: 100%;
-            -webkit-appearance: none;
-            height: 6px;
-            background: var(--border);
-            border-radius: 3px;
-            outline: none;
-        }
-        .score-slider input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
-            transition: transform 0.2s;
-            border: 3px solid white;
-        }
-        .score-slider input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.25);
         }
 
         /* Custom Select */
@@ -403,6 +371,7 @@
             gap: 1rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border);
+            margin-top: 1.5rem;
         }
         .modern-toggle {
             position: relative;
@@ -597,7 +566,6 @@
             position: relative;
             overflow: hidden;
             animation: cardAppear 0.5s ease-out backwards;
-            cursor: pointer;
             box-shadow: var(--shadow-sm);
         }
         .result-card::before {
@@ -636,6 +604,7 @@
         .card-branch.علمي { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
         .card-branch.أدبي { background: rgba(245, 158, 11, 0.1); color: #d97706; }
         .card-branch.فنون { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
+        .card-branch.مهني { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
         .card-rank {
             font-size: 0.75rem;
             color: var(--text-dim);
@@ -674,6 +643,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            width: 100%;
         }
         .score-label {
             font-size: 0.7rem;
@@ -702,22 +672,6 @@
             background: linear-gradient(90deg, #22c55e, #16a34a);
             border-radius: 2px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-arrow {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            transition: all 0.3s ease;
-        }
-        .result-card:hover .card-arrow {
-            background: var(--primary);
-            color: white;
-            transform: translateX(-4px);
         }
 
         /* ===== EMPTY STATE ===== */
@@ -759,13 +713,8 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.9rem;
-            color: white;
+            object-fit: cover;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.25);
         }
         .footer-name {
             display: block;
@@ -829,7 +778,7 @@
     <div class="top-bar">
         <div class="top-bar-inner">
             <div class="creator-info">
-                <div class="avatar">AD</div>
+                <img src="1.jpg" alt="Ahmed Diaa" class="avatar">
                 <div class="creator-text">
                     <span class="creator-label">تم التطوير بواسطة</span>
                     <span class="creator-name">Ahmed Diaa</span>
@@ -852,11 +801,11 @@
                 <span class="title-line">محرك بحث الحدود الدنيا</span>
                 <span class="title-line accent">للقبول المركزي</span>
             </h1>
-            <p class="hero-subtitle">اكتشف الكليات والأقسام المتاحة لمعدلك بضغطة زر</p>
+            <p class="hero-subtitle">اكتشف الكليات والأقسام المتاحة عبر الفلترة الذكية</p>
             <div class="hero-stats" id="heroStats">
                 <div class="stat-item">
                     <span class="stat-num" id="statColleges">0</span>
-                    <span class="stat-label">كلية</span>
+                    <span class="stat-label">كلية/قسم</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-num" id="statUnis">0</span>
@@ -874,17 +823,15 @@
     <div class="container">
         <div class="search-panel">
             <div class="search-grid">
+                
                 <div class="input-block">
                     <label for="scoreInput">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        المعدل
+                        أدخل معدلك هنا
                     </label>
                     <div class="input-wrap">
                         <input type="number" id="scoreInput" placeholder="مثال: 90.50" min="50" max="105" step="0.01">
                         <span class="input-suffix">%</span>
-                    </div>
-                    <div class="score-slider">
-                        <input type="range" id="scoreSlider" min="50" max="105" step="0.01" value="75">
                     </div>
                 </div>
 
@@ -919,8 +866,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
+            <!-- زر المعدل فما دون -->
             <div class="toggle-row">
                 <div class="modern-toggle">
                     <input type="checkbox" id="showBelowToggle" checked>
@@ -939,7 +888,7 @@
         <div class="results-toolbar" id="resultsToolbar" style="display:none;">
             <div class="results-count">
                 <span class="count-badge" id="countBadge">0</span>
-                <span class="count-text">نتيجة مطابقة</span>
+                <span class="count-text">نتيجة مطابقة لمعدلك</span>
             </div>
             <div class="sort-control">
                 <span>الترتيب:</span>
@@ -960,7 +909,7 @@
         <div class="error-state" id="errorState" style="display:none;">
             <div class="error-icon">⚠️</div>
             <h3>تعذر تحميل البيانات</h3>
-            <p>يرجى التأكد من وجود ملف data.json في نفس المجلد</p>
+            <p>يرجى التأكد من وجود ملف JSON المطلوب في نفس المجلد</p>
             <button class="retry-btn" onclick="init()">إعادة المحاولة</button>
         </div>
 
@@ -971,7 +920,7 @@
         <div class="empty-state" id="emptyState" style="display:none;">
             <div class="empty-illustration">🔍</div>
             <h3>لا توجد نتائج مطابقة</h3>
-            <p>جرب تعديل المعدل أو إزالة بعض الفلاتر للحصول على نتائج أكثر</p>
+            <p>جرب تعديل المعدل أو إزالة بعض الفلاتر للحصول على نتائج</p>
         </div>
     </div>
 
@@ -979,7 +928,7 @@
     <footer class="app-footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="footer-avatar">AD</div>
+                <img src="1.jpg" alt="Ahmed Diaa" class="footer-avatar">
                 <div>
                     <span class="footer-name">Ahmed Diaa</span>
                 </div>
@@ -989,6 +938,9 @@
                 <span>تابعني على إنستغرام</span>
             </a>
         </div>
+        <div class="footer-copy">
+            © 2025-2026 جميع الحقوق محفوظة لـ Ahmed Diaa
+        </div>
     </footer>
 
     <script>
@@ -996,7 +948,6 @@
         let currentSort = 'desc';
 
         const scoreInput = document.getElementById('scoreInput');
-        const scoreSlider = document.getElementById('scoreSlider');
         const showBelowToggle = document.getElementById('showBelowToggle');
         const resultsGrid = document.getElementById('resultsGrid');
         const resultsToolbar = document.getElementById('resultsToolbar');
@@ -1051,11 +1002,10 @@
         });
 
         scoreInput.addEventListener('input', () => {
-            scoreSlider.value = scoreInput.value || 75;
             filterData();
         });
-        scoreSlider.addEventListener('input', () => {
-            scoreInput.value = scoreSlider.value;
+
+        showBelowToggle.addEventListener('change', () => {
             filterData();
         });
 
@@ -1067,11 +1017,6 @@
                 filterData();
             });
         });
-
-        function reverseString(str) {
-            if (!str) return '';
-            return str.split('').reverse().join('');
-        }
 
         function animateValue(el, start, end, duration) {
             const range = end - start;
@@ -1094,31 +1039,33 @@
             emptyState.style.display = 'none';
 
             try {
-                const response = await fetch('data.json');
+                let response;
+                try {
+                    response = await fetch('iraq_universities_admission_2025_2026.json');
+                    if (!response.ok) throw new Error();
+                } catch {
+                    response = await fetch('data.json');
+                }
+                
                 if (!response.ok) throw new Error('File not found');
                 const rawData = await response.json();
 
                 allData = rawData.map(item => {
-                    const rawCollege = item.university || '';
-                    const rawUni = item.college || '';
-                    const rawBranch = item.major || '';
+                    const uni = item['الجامعة'] || item.university || item['الكلية او الجامعة'] || '';
+                    const coll = item['القسم'] || item.college || '';
+                    let branch = item['الفرع'] || item['مهني او علمي او ادبي'] || item.major || '';
 
-                    const reversedCollege = reverseString(rawCollege);
-                    const reversedUni = reverseString(rawUni);
-                    let reversedBranch = reverseString(rawBranch);
-
-                    if (reversedBranch === 'ادبي') reversedBranch = 'أدبي';
-                    if (!['علمي', 'أدبي', 'فنون'].includes(reversedBranch)) {
-                        reversedBranch = 'علمي';
-                    }
+                    if (branch.includes('ادبي')) branch = 'أدبي';
+                    if (branch.includes('فنون')) branch = 'مهني'; // تحويل الفنون الى مهني
+                    if (branch.includes('مهني')) branch = 'مهني';
 
                     return {
-                        university: reversedUni,
-                        college: reversedCollege,
-                        branch: reversedBranch,
-                        average: parseFloat(item.grade) || 0
+                        university: uni,
+                        college: coll,
+                        branch: branch,
+                        average: parseFloat(item['المعدل'] || item.grade) || 0
                     };
-                }).filter(item => item.average <= 105);
+                });
 
                 loader.style.display = 'none';
                 resultsToolbar.style.display = 'flex';
@@ -1148,9 +1095,7 @@
                 setupCustomSelect(branchSelect, () => filterData());
                 setupCustomSelect(uniSelect, () => filterData());
 
-                showBelowToggle.addEventListener('change', filterData);
-
-                const collegesCount = [...new Set(allData.map(i => i.college))].length;
+                const collegesCount = [...new Set(allData.map(i => i.college))].filter(Boolean).length;
                 const unisCount = universities.length;
                 const branchesCount = branches.length;
 
@@ -1181,7 +1126,7 @@
                     if (showBelow) {
                         filtered = filtered.filter(item => item.average <= targetScore);
                     } else {
-                        filtered = filtered.filter(item => Math.abs(item.average - targetScore) < 0.5);
+                        filtered = filtered.filter(item => Math.abs(item.average - targetScore) <= 0.5);
                     }
                 }
             }
@@ -1223,7 +1168,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-uni">${item.university}</div>
-                        <h3 class="card-college">${item.college}</h3>
+                        <h3 class="card-college">${item.college || 'غير محدد'}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="score-display">
@@ -1232,9 +1177,6 @@
                             <div class="score-bar">
                                 <div class="score-bar-fill" style="width: 0%"></div>
                             </div>
-                        </div>
-                        <div class="card-arrow">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                         </div>
                     </div>
                 `;
