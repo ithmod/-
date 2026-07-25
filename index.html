@@ -12,11 +12,10 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- إعدادات معاينة الرابط عند الإرسال (Open Graph) لإصلاح مشكلة ظهور صورتك الشخصية -->
+
+    <!-- إعدادات معاينة الرابط عند الإرسال (Open Graph) -->
     <meta property="og:title" content="محرك بحث الحدود الدنيا للقبول المركزي 2025-2026">
     <meta property="og:description" content="اكتشف الكليات والأقسام المتاحة عبر الفلترة الذكية بكل سهولة وبضغطة زر.">
-    <!-- استبدل banner.jpg باسم صورة الغلاف التي صممتها (أو empty.jpg إذا كنت لا تريد أي صورة) -->
     <meta property="og:image" content="banner.jpg"> 
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -107,8 +106,7 @@
             color: var(--text);
             letter-spacing: 0.5px;
         }
-        
-        /* التعديل الجديد لزر التواصل */
+
         .insta-btn, .footer-insta {
             display: flex;
             align-items: center;
@@ -264,7 +262,7 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .search-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -638,8 +636,13 @@
         .card-branch.علمي { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
         .card-branch.أدبي { background: rgba(245, 158, 11, 0.1); color: #d97706; }
         .card-branch.فنون { background: rgba(168, 85, 247, 0.1); color: #9333ea; }
-        
-        /* تنسيقات شارة الجنس */
+        /* ===== تنسيق شارة الفرع المهني الجديد ===== */
+        .card-branch.مهني,
+        .card-branch.المهني {
+            background: rgba(8, 145, 178, 0.1);
+            color: #0891b2;
+        }
+
         .card-gender {
             padding: 0.3rem 0.75rem;
             border-radius: 999px;
@@ -800,6 +803,7 @@
             .footer-content { flex-direction: column; text-align: center; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -813,7 +817,6 @@
                     <span class="creator-name">Ahmed Diaa</span>
                 </div>
             </div>
-            <!-- زر تواصل معي المعدل -->
             <a href="https://instagram.com/h_8w" target="_blank" class="insta-btn">
                 <span>تواصل معي</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -853,7 +856,7 @@
     <div class="container">
         <div class="search-panel">
             <div class="search-grid">
-                
+
                 <!-- إدخال المعدل -->
                 <div class="input-block">
                     <label for="scoreInput">
@@ -866,7 +869,7 @@
                     </div>
                 </div>
 
-                <!-- فلتر المحافظة الجديد -->
+                <!-- فلتر المحافظة -->
                 <div class="input-block">
                     <label for="govFilter">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -983,7 +986,6 @@
                     <span class="footer-name">Ahmed Diaa</span>
                 </div>
             </div>
-            <!-- زر تواصل معي المعدل -->
             <a href="https://instagram.com/h_8w" target="_blank" class="footer-insta">
                 <span>تواصل معي</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -1010,41 +1012,38 @@
         const uniSelect = document.getElementById('uniSelect');
         const govSelect = document.getElementById('govSelect');
 
-        // خوارزمية ذكية لمعرفة المحافظة الصحيحة حتى لو كانت الجامعة بفروع متعددة
+        // خوارزمية ذكية لمعرفة المحافظة الصحيحة
         function getGovForUni(uniName, collegeName) {
-            // ندمج اسم الجامعة مع الكلية للبحث عن الكلمات الدالة في كليهما
             const fullText = (uniName + " " + collegeName).trim();
 
-            // 1. الجامعات التقنية والفرات الأوسط (متعددة المحافظات)
             if (fullText.includes("التقنية الجنوبية")) {
                 if (fullText.includes("ميسان") || fullText.includes("العمارة")) return "ميسان";
                 if (fullText.includes("ذي قار") || fullText.includes("الناصرية") || fullText.includes("الشطرة")) return "ذي قار";
-                return "البصرة"; // المقر الرئيسي
+                return "البصرة";
             }
             if (fullText.includes("التقنية الوسطى")) {
                 if (fullText.includes("واسط") || fullText.includes("الكوت") || fullText.includes("الصويرة")) return "واسط";
                 if (fullText.includes("ديالى") || fullText.includes("بعقوبة") || fullText.includes("المقدادية")) return "ديالى";
                 if (fullText.includes("الانبار") || fullText.includes("الأنبار")) return "الأنبار";
                 if (fullText.includes("صلاح الدين") || fullText.includes("الدور") || fullText.includes("بلد")) return "صلاح الدين";
-                return "بغداد"; // المقر الرئيسي
+                return "بغداد";
             }
             if (fullText.includes("التقنية الشمالية")) {
                 if (fullText.includes("كركوك") || fullText.includes("الحويجة")) return "كركوك";
                 if (fullText.includes("صلاح الدين") || fullText.includes("الدور") || fullText.includes("الشرقاط")) return "صلاح الدين";
-                return "نينوى"; // المقر الرئيسي (الموصل، نينوى، النمرود)
+                return "نينوى";
             }
             if (fullText.includes("الفرات الأوسط") || fullText.includes("الفرات الاوسط")) {
                 if (fullText.includes("بابل") || fullText.includes("المسيب")) return "بابل";
                 if (fullText.includes("كربلاء")) return "كربلاء";
                 if (fullText.includes("القادسية") || fullText.includes("الديوانية")) return "الديوانية";
                 if (fullText.includes("المثنى") || fullText.includes("السماوة") || fullText.includes("الرميثة")) return "المثنى";
-                return "النجف"; // المقر الرئيسي
+                return "النجف";
             }
 
-            // 2. باقي الجامعات الثابتة في محافظة واحدة
             const govMapping = [
                 { keys: ["تلعفر", "الحمدانية", "نينوى", "الموصل"], gov: "نينوى" },
-                { keys: ["البصرة للنفط", "البصرة"], gov: "البصرة" }, // يجب فحص البصرة للنفط قبل البصرة
+                { keys: ["البصرة للنفط", "البصرة"], gov: "البصرة" },
                 { keys: ["القاسم الخضراء", "بابل"], gov: "بابل" },
                 { keys: ["جابر بن حيان", "الكوفة"], gov: "النجف" },
                 { keys: ["كربلاء"], gov: "كربلاء" },
@@ -1067,7 +1066,7 @@
                     }
                 }
             }
-            
+
             return "أخرى";
         }
 
@@ -1087,7 +1086,7 @@
         function setupCustomSelect(el, onChange) {
             const trigger = el.querySelector('.select-trigger');
             const options = el.querySelector('.select-options');
-            
+
             trigger.addEventListener('click', (e) => {
                 e.stopPropagation();
                 document.querySelectorAll('.custom-select').forEach(s => {
@@ -1159,7 +1158,7 @@
                 } catch {
                     response = await fetch('data.json');
                 }
-                
+
                 if (!response.ok) throw new Error('File not found');
                 const rawData = await response.json();
 
@@ -1169,11 +1168,11 @@
                     let branch = item['الفرع'] || item['مهني او علمي او ادبي'] || item.major || '';
                     let gender = item['الجنس'] || item.gender || 'مختلط';
 
-                    // تصحيح التسميات
+                    // ===== تصحيح التسميات — تمت إضافة المهني هنا =====
                     if (branch.includes('ادبي')) branch = 'أدبي';
+                    if (branch.includes('مهني')) branch = 'مهني';  // <-- جديد
                     if (gender.includes('انثى') || gender.includes('أنثى')) gender = 'انثى';
 
-                    // نمرر اسم الجامعة والكلية لضمان دقة المحافظة
                     const gov = getGovForUni(uni, coll);
 
                     return {
