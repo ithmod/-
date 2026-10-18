@@ -1793,6 +1793,26 @@
                 .trim();
         }
 
+        // دالة متقدمة لتطبيع ومطابقة أسماء الكليات والأقسام لتجاوز الاختلافات في التسميات بين السنوات
+        function normalizeDeptKey(str) {
+            if (!str) return '';
+            let s = normalizeText(str);
+            // مطابقة كليات البوليتكنك الجديدة مع المعاهد والكليات التقنية السابقة
+            s = s.replace(/كليه\s+البوليتكنك/g, 'المعهد التقني');
+            // إزالة عبارات سنوات الدراسة مثل (2-4 سنة) و (2 سنة)
+            s = s.replace(/\s*[24]\s*سنه\s*|\s*[24]\s+/g, ' ');
+            // إزالة كلمة 'هندسة' أو 'الهندسة' الزائدة بعد كلمة 'قسم'
+            s = s.replace(/قسم\s+(الهندسه|هندسه)\s+/g, 'قسم ');
+            // توحيد مرادفات التخصصات الهندسية الشائعة
+            s = s.replace(/المدنيه|المدني/g, 'المدني');
+            s = s.replace(/الميكانيكيه/g, 'الميكانيك');
+            s = s.replace(/الكهربائيه/g, 'الكهرباء');
+            s = s.replace(/الكيميائيه|الكيمياويه|الكيميائي|الكيمياوي/g, 'الكيمياوي');
+            s = s.replace(/الالكترونيه|الالكترون/g, 'الالكترونيك');
+            s = s.replace(/\s+/g, ' ').trim();
+            return s;
+        }
+
         // خوارزمية ذكية لمعرفة المحافظة الصحيحة حتى لو كانت الجامعة بفروع متعددة
         function getGovForUni(uniName, collegeName) {
             const fullText = (uniName + " " + collegeName).trim();
@@ -2032,11 +2052,25 @@
 
             (rawOldList || []).forEach(raw => {
                 const parsed = parseRawItem(raw);
-                const exactKey = `${normalizeText(parsed.university)}|${normalizeText(parsed.college)}|${normalizeText(parsed.branch)}|${normalizeText(parsed.gender)}`;
-                const looseKey = `${normalizeText(parsed.university)}|${normalizeText(parsed.college)}|${normalizeText(parsed.branch)}`;
+                const normUni = normalizeText(parsed.university);
+                const normColl = normalizeDeptKey(parsed.college);
+                const normBranch = normalizeText(parsed.branch);
+                const normGender = normalizeText(parsed.gender);
+
+                const exactKey = `${normUni}|${normColl}|${normBranch}|${normGender}`;
+                const looseKey = `${normUni}|${normColl}|${normBranch}`;
                 oldExactMap.set(exactKey, parsed.average);
                 if (!oldLooseMap.has(looseKey)) {
                     oldLooseMap.set(looseKey, parsed.average);
+                }
+
+                // دعم إضافي لمطابقة كليات البوليتكنك مع الكلية التقنية أيضاً
+                if (normColl.includes('المعهد التقني')) {
+                    const altColl = normColl.replace(/المعهد التقني/g, 'الكليه التقنيه');
+                    oldExactMap.set(`${normUni}|${altColl}|${normBranch}|${normGender}`, parsed.average);
+                    if (!oldLooseMap.has(`${normUni}|${altColl}|${normBranch}`)) {
+                        oldLooseMap.set(`${normUni}|${altColl}|${normBranch}`, parsed.average);
+                    }
                 }
             });
 
@@ -2044,8 +2078,13 @@
 
             return (sourceNew || []).map(raw => {
                 const parsed = parseRawItem(raw);
-                const exactKey = `${normalizeText(parsed.university)}|${normalizeText(parsed.college)}|${normalizeText(parsed.branch)}|${normalizeText(parsed.gender)}`;
-                const looseKey = `${normalizeText(parsed.university)}|${normalizeText(parsed.college)}|${normalizeText(parsed.branch)}`;
+                const normUni = normalizeText(parsed.university);
+                const normColl = normalizeDeptKey(parsed.college);
+                const normBranch = normalizeText(parsed.branch);
+                const normGender = normalizeText(parsed.gender);
+
+                const exactKey = `${normUni}|${normColl}|${normBranch}|${normGender}`;
+                const looseKey = `${normUni}|${normColl}|${normBranch}`;
 
                 let oldAvg = null;
                 if (raw['المعدل_السابق'] !== undefined || raw.old_average !== undefined || raw.average_2025 !== undefined) {
